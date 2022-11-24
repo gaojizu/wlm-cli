@@ -1,6 +1,10 @@
 #### 开发背景
 
-> 博客很久没有更新了， 今天更新一个好玩的，等我将vue3的东西彻底搞明白我会更新一个vue3的系列，到时候会更新稍微勤一点，在使用vuecli的时候发现他的脚手架很有意思，用了几年了，但是一直没有好好研究过这个东西是怎么实现的，所以今天就好好的记录一下这玩意怎么实现的，记录的过程中有什么注意事项我也会标明的，当然我会尽可能的写的明白一些，因为这个东西有一些地方不那么好理解，当一个东西不太好理解的时候文章书写的顺序就显的很重要，因为开始的时候如果你就很迷茫，那么你看下去的看动力也就没有了，所以我也是尽可能的从最简单的开始写，相信只要按照文章一点点的来，应该都是没问题的，我文章的顺序就是我自己开发这个功能的顺序，如果有大神觉得我哪里写的有什么问题的话，也可以下方留言，我看到了都会补充说明并表示感谢。
+> 博客很久没有更新了， 今天更新一个好玩的，等我将vue3的东西彻底搞明白我会更新一个vue3的系列，到时候会更新稍微勤一点，在使用vuecli的时候发现他的脚手架很有意思，用了几年了，但是一直没有好好研究过这个东西是怎么实现的，所以今天就好好的记录一下这玩意怎么实现的，记录的过程中有什么注意事项我也会标明的，当然我会尽可能的写的明白一些，因为这个东西有一些地方不那么好理解，当一个东西不太好理解的时候文章书写的顺序就显的很重要，因为开始的时候如果你就很迷茫，那么你看下去的看动力也就没有了，所以我也是尽可能的从最简单的开始写，相信只要按照文章一点点的来，应该都是没问题的，我文章的顺序就是我自己开发这个功能的顺序，如果有大神觉得我哪里写的有什么问题的话，也可以下方留言，我看到了都会补充说明并表示感谢。文章看起来觉得比较费劲的可以直接移步我的github，源码奉上 [源码](https://github.com/gaojizu/wlm-cli/tree/main)
+
+##### 先看效果：
+
+
 
 #### 初始化一个package.json
 
@@ -249,7 +253,57 @@ import fs from 'fs' //node 内置模块 不需要单独引入
     fs.writeFileSync(packagePath, packageFinalValue)
 ```
 
+###### json配置
 
+> 当然只是重写还是不够的，需要我们的package.json进行配置，
 
+```json
+{
+  "name": "{{name}}",
+  "author": "{{author}}",
+  "description": "{{description}}",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "ISC",
+  "bin": {
+    "wlm": "index.js"
+  },
+  "{{dependencies}}": {
+    "commander": "^9.4.1",
+    "download-git-repo": "^3.0.2",
+    "handlebars": "^4.7.7",
+    "inquirer": "^9.1.4",
+    "router" : "{{router}}",
+    "pinia" : "{{pinia}}"
+  },
+  "{{devDependencies}}": {
 
+  }
+}
+```
+
+> 我们需要进行重写的地方需要使用胡须模板进行变量接收参数
+
+###### 美化操作
+
+上面提到的ora\chalk\logSymbols都是用来美化用户操作的，这里可以简单的理解为操作的界面更加舒适！
+
+```js
+import ora from 'ora' //添加loading效果
+import chalk from 'chalk'; // 提示文字
+import logSymbols from 'log-symbols'; //提示符号
+```
+
+###### 具体使用 
+
+- [ora](https://github.com/sindresorhus/ora)
+- [chalk](https://github.com/chalk/chalk)
+- [logSymbols](https://github.com/guumaster/logsymbols)
+
+具体美化怎么使用的这里不做太多的介绍了，各自的官网已经写的很明白了，开头我已经将源码地址提供出来， 觉得我的文档写的太乱的可以直接用我写的源码也可以，因为一段时间没有写了，所以写的有点乱，所以这次我也是破天荒的直接提供所有的源码给你们，目的是不挨骂！
+
+### [源码](https://github.com/gaojizu/wlm-cli/tree/main)
 

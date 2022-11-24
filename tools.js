@@ -21,7 +21,6 @@ const log = console.log;
  * @param {*} PC package.json文件
  */
 export const initAndCloneProject = (PN, PC = {}) => {
-  console.log(PC)
   let init = ''
   init = new Promise((res, rej) => {
     const packagePath = `${PN}/package.json`
@@ -29,7 +28,7 @@ export const initAndCloneProject = (PN, PC = {}) => {
     const packageFinalValue = handlebars.compile(packageContent)(PC)
     log(chalk.green(packageFinalValue))
     fs.writeFileSync(packagePath, packageFinalValue)
-    log(logSymbols.success, '初始化项目成功')
+    log(logSymbols.success, '🛫️ 初始化项目成功')
     res()
   })
   return init
@@ -60,7 +59,7 @@ export const downLoadTemplate = (TN = "", PN = "") => {
           return
         }
         spinner.color = 'green';
-        spinner.text = '模板下载成功';
+        spinner.text = '🎉🎉🎉🎉🎉 模板下载成功';
         spinner.succeed()
         res(PN || TN)
       })

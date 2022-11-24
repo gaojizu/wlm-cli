@@ -10,7 +10,7 @@ import chalk from 'chalk'; // 提示文字
 import logSymbols from 'log-symbols'; //提示符号
 
 import { templateObject } from './templates.js'
-import { initAndCloneProject, downLoadTemplate } from './tools.js'
+import { initAndCloneProject, downLoadTemplate ,descriptionNextStep} from './tools.js'
 const log = console.log; // 声明log
 
 /**

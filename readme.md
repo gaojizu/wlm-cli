@@ -157,9 +157,8 @@ leimingwei@leimingweideMBP lm-cli % wlm use
 ```js
 yarn add downlaod-git-repo
 import download from 'download-git-repo'; 
+
 ```
-
-
 
 ```js
 const downloadUrl  = '地址' 
@@ -185,6 +184,8 @@ download(downloadUrl, PN || TN, { clone: true }, (err) => {
 > 当我们可以知道了用户输入的命令了 ，那么之后我们要做的就是这么可以让用户有选择和询问的效果，比如：是否安装路由？是否安装pinia等等操作，还有一些是给用户选择，比如你是安装vue2还是vue3等，这个功能需要我们使用另一个工具进行实现，inquirer工具 
 
 - [inquirer-github](https://github.com/SBoudrias/Inquirer.js)
+
+  
 
 ###### inquirer的基本使用
 
